@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - "*"
+    
+env:
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  IMAGE_NAME: sebbia/build-tools-docker
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag ${IMAGE_NAME}:${GITHUB_REF_NAME}
+        docker tag ${IMAGE_NAME}:${GITHUB_REF_NAME} ${IMAGE_NAME}:latest
+      
+    - name: Push image
+      run: |
+        docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
+        docker push ${IMAGE_NAME}:${GITHUB_REF_NAME}
+        docker push ${IMAGE_NAME}:latest
+    
+    - name: Update DockerHub description
+      uses: peter-evans/dockerhub-description@v2
+      with:
+        username: ${DOCKER_USER}
+        password: ${DOCKER_PASSWORD}
+        repository: Sebbia/androidsdk-docker
