@@ -24,15 +24,15 @@ jobs:
         docker build . --file Dockerfile --tag ${IMAGE_NAME}:${GITHUB_REF_NAME}
         docker tag ${IMAGE_NAME}:${GITHUB_REF_NAME} ${IMAGE_NAME}:latest
       
-    - name: Push image
+    - name: Push image to Docker Hub
       run: |
         docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
         docker push ${IMAGE_NAME}:${GITHUB_REF_NAME}
         docker push ${IMAGE_NAME}:latest
     
-    - name: Update DockerHub description
+    - name: Update Docker Hub description
       uses: peter-evans/dockerhub-description@v2
       with:
         username: ${DOCKER_USER}
         password: ${DOCKER_PASSWORD}
-        repository: Sebbia/androidsdk-docker
+        repository: ${IMAGE_NAME}
