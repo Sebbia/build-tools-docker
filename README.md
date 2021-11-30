@@ -20,7 +20,7 @@ Loads provided SSH private key with `ssh-agent`. This tool is useful for deployi
 
 Usage:
 ```
-load_ssh_private_key ${SSH_PRIVATE_KEY}
+load_ssh_private_key "${SSH_PRIVATE_KEY}"
 ```
 
 or
