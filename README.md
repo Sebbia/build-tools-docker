@@ -1,3 +1,5 @@
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/sebbia/build-tools-docker?label=docker%20image&sort=semver&style=flat-square)
+
 # Common build tools for dokerized builds
 
 Features:
