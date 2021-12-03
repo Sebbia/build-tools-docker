@@ -3,6 +3,10 @@
   <img alt="Docker Image Version (latest semver)" src="https://img.shields.io/docker/v/sebbia/build-tools-docker?label=docker%20image&sort=semver&style=flat-square">
 </a>
 
+<a href="https://github.com/Sebbia/build-tools-docker">
+<img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/Sebbia/build-tools-docker?label=github%20release&sort=semver&style=flat-square">
+</a>
+
 Features:
 
 * based on official Alpine docker image
