@@ -31,8 +31,10 @@ jobs:
         docker push ${IMAGE_NAME}:latest
     
     - name: Update Docker Hub description
-      uses: peter-evans/dockerhub-description@v2
+      uses: meeDamian/sync-readme@v1.0.6
       with:
-        username: ${DOCKER_USER}
-        password: ${DOCKER_PASSWORD}
-        repository: ${IMAGE_NAME}
+        user: ${DOCKER_USER}
+        pass: ${DOCKER_PASSWORD}
+        slug: ${IMAGE_NAME}
+        readme: ./README.md
+        description: true
